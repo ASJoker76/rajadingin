@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/aguss/.gradle/caches/transforms-3/564d6f89baee8f61aa28773b0adad29f/transformed/numberpicker-1.0.7/res/layout/number_picker_layout.xml" value="0.33" />
+        <entry key="..\:/Users/aguss/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_login.xml" value="0.2798913043478261" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_register.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_splash.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/fragment_account.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/fragment_cart.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/fragment_detail_product.xml" value="0.33" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/fragment_history.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/fragment_home.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/image_categori.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/image_product.xml" value="0.33" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/image_slider_item.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/number_picker_sumtom_layout.xml" value="0.5" />
+        <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/menu/my_navigation_items.xml" value="0.18541666666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

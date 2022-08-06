@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:outlineAmbientShadowColor="@color/abu_abu"
+    android:outlineSpotShadowColor="@color/abu_abu"
+    android:layout_margin="10dp"
+    android:id="@+id/lyCard">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/cl_view">
+
+
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/iv_foto"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/iv_foto"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/iv_foto"
+                android:id="@+id/tv_product_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/tv_product_nama"
+                android:id="@+id/tv_harga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=""/>
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/tv_harga"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/tvStok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/tv_harga"
+                app:layout_constraintStart_toEndOf="@id/tvStok"
+                android:id="@+id/tv_harga_diskon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+            <TextView
+                android:id="@+id/tv_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_diskon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@drawable/bookmark"
+        app:layout_constraintTop_toTopOf="@id/cl_view"
+        app:layout_constraintStart_toStartOf="@id/cl_view"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/tv_diskon_produk"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Discon s.d\n10%"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/whiteTextColor"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
