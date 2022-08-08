@@ -2,7 +2,6 @@ package com.raja.dingin.view.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,20 +14,19 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.raja.dingin.R
 import com.raja.dingin.adapter.AdapterCategori
 import com.raja.dingin.adapter.AdapterProduct
-import com.raja.dingin.adapter.RecyclerViewClickListener
+import com.raja.dingin.adapter.RecyclerViewHomeClickListener
 import com.raja.dingin.connection.API
 import com.raja.dingin.databinding.FragmentHomeBinding
 import com.raja.dingin.model.req.ReqProduct
 import com.raja.dingin.model.res.ResBanner
 import com.raja.dingin.model.res.ResCategori
 import com.raja.dingin.model.res.ResProduct
-import com.squareup.picasso.Picasso
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.Collections.addAll
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,7 +39,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment(), RecyclerViewClickListener {
+class HomeFragment : Fragment(), RecyclerViewHomeClickListener {
 
     private var binding: FragmentHomeBinding? = null
 
@@ -50,8 +48,10 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
 
     private var listData: List<ResBanner> = ArrayList()
     private var listDataCategori: List<ResCategori> = ArrayList()
-    private var listDataProduct: List<ResProduct> = ArrayList()
+    private var listDataProduct: MutableList<ResProduct> = mutableListOf()
     private var token: String? = null
+
+    val productAdapter = AdapterProduct()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,9 +138,18 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
         API.buildService().listProduct(token.toString(),reqProduct)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object : Observer<List<ResProduct?>?> {
-                override fun onSubscribe(d: Disposable) {
-                    //listDataProduct.clear()
+            .subscribeWith(object : Observer<Response<List<ResProduct>>> {
+                override fun onNext(responseData: Response<List<ResProduct>>) {
+                    listDataProduct.clear()
+                    val statusCode: Int = responseData.code()
+                    // here you get your status code
+                    if (statusCode==200){
+                        listDataProduct = responseData.body() as MutableList<ResProduct>
+                        loadrecylerviewProduct(listDataProduct)
+                    }
+                    else if (statusCode==204){
+                        productAdapter.setView(listDataProduct)
+                    }
                 }
 
                 override fun onError(e: Throwable) {
@@ -151,9 +160,8 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
 
                 }
 
-                override fun onNext(t: List<ResProduct?>) {
-                    listDataProduct = t as List<ResProduct>
-                    loadrecylerviewProduct(listDataProduct)
+                override fun onSubscribe(d: Disposable) {
+
                 }
             })
     }
@@ -172,7 +180,6 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
     }
 
     private fun loadrecylerviewProduct(resProduct: List<ResProduct>) {
-        val productAdapter = AdapterProduct(resProduct)
         val recyclerView = binding!!.rvProduct
 
         // set click listener
@@ -183,7 +190,7 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
             this.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         }
 
-        productAdapter.notifyDataSetChanged()
+        productAdapter.setView(resProduct)
     }
 
     companion object {
@@ -198,7 +205,12 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
     }
 
     override fun onItemClicked(view: View, resCategori: ResCategori) {
-        loadproduct(resCategori.kategori_id.toString())
+        if (resCategori.kategori_id==0){
+            loadproduct("")
+        }
+        else{
+            loadproduct(resCategori.kategori_id.toString())
+        }
     }
 
     override fun onItemClicked(view: View, resProduct: ResProduct) {

@@ -4,16 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.raja.dingin.R
 import com.raja.dingin.databinding.ImageProductBinding
-import com.raja.dingin.model.res.ResProduct
+import com.raja.dingin.model.res.ResCart
 
-class AdapterProduct (
-    private val resProduct: MutableList<ResProduct> = mutableListOf()
-) : RecyclerView.Adapter<AdapterProduct.NegaraViewHolder>() {
+class AdapterCart (
+    private val resCart: MutableList<ResCart> = mutableListOf()
+) : RecyclerView.Adapter<AdapterCart.NegaraViewHolder>() {
 
-    var listener: RecyclerViewHomeClickListener? = null
+    var listener: RecyclerViewCartClickListener? = null
     private var viewBinding: ImageProductBinding? = null
     lateinit var mContext: Context
 
@@ -22,7 +20,7 @@ class AdapterProduct (
     ) : RecyclerView.ViewHolder(itemCategoriBinding.root)
 
     // untuk mendapatkan jumlah data yang dimasukkan ke dalam adapter
-    override fun getItemCount() = resProduct.size
+    override fun getItemCount() = resCart.size
 
     // untuk membuat setiap item recyclerview berdasarkan jumlah data yang dimasukkan ke dalam adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : NegaraViewHolder{
@@ -31,27 +29,27 @@ class AdapterProduct (
         return NegaraViewHolder(viewBinding!!)
     }
 
-    fun setView(resProductNew: List<ResProduct>) {
-        resProduct.clear() // clear list
-        resProduct.addAll(resProductNew)
+    fun setView(resCartNew: List<ResCart>) {
+        resCart.clear() // clear list
+        resCart.addAll(resCartNew)
         notifyDataSetChanged() // let your adapter know about the changes and reload view.
     }
 
     // untuk memasukkan atau set data ke dalam view
     override fun onBindViewHolder(holder: NegaraViewHolder, position: Int) {
-        holder.itemCategoriBinding.tvProductNama.text = resProduct[position].name_product
-        Glide.with(mContext)
-            .load(resProduct[position].detailImage[0].image)
-            .placeholder(R.drawable.logo)
-            .error(R.drawable.logo)
-            .into(holder.itemCategoriBinding.ivFoto)
+        holder.itemCategoriBinding.tvProductNama.text = resCart[position].name_product
+//        Glide.with(mContext)
+//            .load(resCart[position].detailImage[0].image)
+//            .placeholder(R.drawable.logo)
+//            .error(R.drawable.logo)
+//            .into(holder.itemCategoriBinding.ivFoto)
 
-        holder.itemCategoriBinding.tvHarga.text =  "Price " + resProduct[position].harga.toString()
-        holder.itemCategoriBinding.tvStok.text =  "Stock " + resProduct[position].sisa_stok.toString()
+        holder.itemCategoriBinding.tvHarga.text =  "Price " + resCart[position].harga.toString()
+        holder.itemCategoriBinding.tvStok.text =  "Sub Total " + resCart[position].sub_total.toString()
 
         // event onclick pada setiap item
         holder.itemCategoriBinding.lyCard.setOnClickListener {
-            listener?.onItemClicked(it, resProduct[position])
+            listener?.onItemClicked(it, resCart[position])
         }
     }
 }

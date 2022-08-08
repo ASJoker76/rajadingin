@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.raja.dingin.R
 import com.raja.dingin.databinding.ImageCategoriBinding
 import com.raja.dingin.model.res.ResCategori
 
@@ -13,7 +12,7 @@ class AdapterCategori (
     private val resCategori: List<ResCategori>
 ) : RecyclerView.Adapter<AdapterCategori.NegaraViewHolder>() {
 
-    var listener: RecyclerViewClickListener? = null
+    var listener: RecyclerViewHomeClickListener? = null
     private var viewBinding: ImageCategoriBinding? = null
     lateinit var mContext: Context
 

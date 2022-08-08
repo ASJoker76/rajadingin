@@ -1,33 +1,36 @@
 package com.raja.dingin.view.fragment
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.raja.dingin.R
+import androidx.recyclerview.widget.GridLayoutManager
+import com.raja.dingin.adapter.AdapterCart
+import com.raja.dingin.adapter.RecyclerViewCartClickListener
+import com.raja.dingin.connection.API
+import com.raja.dingin.databinding.FragmentCartBinding
+import com.raja.dingin.model.req.ReqProduct
+import com.raja.dingin.model.res.ResCart
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class CartFragment : Fragment(), RecyclerViewCartClickListener {
+
+    private lateinit var binding: FragmentCartBinding
+    private var token: String? = null
+    private var listDataCart: MutableList<ResCart> = mutableListOf()
+    val cartAdapter = AdapterCart()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -35,26 +38,66 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        binding = FragmentCartBinding.inflate(inflater, container, false)
+        val root: View = binding!!.getRoot()
+
+        val prefs = requireActivity().baseContext.getSharedPreferences("login", Context.MODE_PRIVATE)
+        token = prefs.getString("token", "")
+
+        val reqProduct = ReqProduct(
+            10,
+            0,
+            ""
+        )
+
+        API.buildService().listKeranjang(token.toString(),reqProduct)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribeWith(object : Observer<Response<List<ResCart>>> {
+                override fun onNext(responseData: Response<List<ResCart>>) {
+                    listDataCart.clear()
+                    val statusCode: Int = responseData.code()
+                    // here you get your status code
+                    if (statusCode==200){
+                        listDataCart = responseData.body() as MutableList<ResCart>
+                        loadrecylerviewProduct(listDataCart)
+                    }
+                    else if (statusCode==204){
+                        cartAdapter.setView(listDataCart)
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.d("TAG", "onError: ${e.message}")
+                }
+
+                override fun onComplete() {
+
+                }
+
+                override fun onSubscribe(d: Disposable) {
+
+                }
+            })
+
+        return root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun loadrecylerviewProduct(resProduct: List<ResCart>) {
+        val recyclerView = binding!!.rvCart
+
+        // set click listener
+        cartAdapter.listener = this
+
+        recyclerView.apply {
+            this.adapter = cartAdapter
+            this.layoutManager = GridLayoutManager(activity, 1, GridLayoutManager.VERTICAL, false)
+        }
+
+        cartAdapter.setView(resProduct)
+    }
+
+    override fun onItemClicked(view: View, resCart: ResCart) {
+
     }
 }

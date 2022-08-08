@@ -105,12 +105,14 @@
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/colorPrimary">
 
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/ivCart"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/cart"
-                        app:tint="@color/whiteTextColor"
-                        android:layout_gravity="center"/>
+                        android:background="@drawable/cart"
+                        android:backgroundTint="@color/whiteTextColor"
+                        android:layout_gravity="center"
+                        />
 
                 </androidx.cardview.widget.CardView>
 
