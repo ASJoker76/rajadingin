@@ -125,9 +125,9 @@ class RegisterActivity : AppCompatActivity(), LocationFormatter {
         sheenValidator.registerAsRequired(tvUsername)
         sheenValidator.registerAsPhone(tvPhoneNumber)
         sheenValidator.registerAsRequired(tvAddress)
-        sheenValidator.registerAsRequired(tvProvinsi)
         sheenValidator.registerAsRequired(tvPostalCode)
         sheenValidator.registerAsRequired(tvPhoneNumber)
+        sheenValidator.registerAsRequired(tvPassword)
         sheenValidator.registerAsRequired(tvPasswordConfirm)
     }
 
