@@ -138,74 +138,119 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilProvinsi"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:hint="Provinsi"
-                app:shapeAppearance="@style/Rounded">
+                app:shapeAppearance="@style/Rounded"
+                >
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvProvinsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:drawableRight="@drawable/drop_down"
+                    />
 
-                <AutoCompleteTextView
+                <Spinner
                     android:id="@+id/spProvinsi"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0px"
                     android:paddingVertical="15dp"
-                    android:inputType="none"/>
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilKabupaten"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:hint="Kabupaten"
                 app:shapeAppearance="@style/Rounded">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvKabupaten"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:drawableRight="@drawable/drop_down"
+                    />
+
+                <Spinner
                     android:id="@+id/spKabupaten"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:inputType="none"/>
+                    android:layout_height="0px"
+                    android:paddingVertical="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilKecamatan"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:hint="Kecamatan"
                 app:shapeAppearance="@style/Rounded">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvKecamatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:drawableRight="@drawable/drop_down"
+                    />
+
+                <Spinner
                     android:id="@+id/spKecamatan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:inputType="none"/>
+                    android:layout_height="0px"
+                    android:paddingVertical="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilKelurahan"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:hint="Kelurahan"
                 app:shapeAppearance="@style/Rounded">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvKelurahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:editable="false"
+                    android:drawableRight="@drawable/drop_down"
+                    />
+
+                <Spinner
                     android:id="@+id/spKelurahan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:inputType="none"/>
+                    android:layout_height="0px"
+                    android:paddingVertical="15dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 

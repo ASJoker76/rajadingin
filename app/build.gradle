@@ -66,4 +66,5 @@ dependencies {
 
     implementation 'com.github.travijuu:numberpicker:1.0.7'
     implementation 'com.google.android.gms:play-services-location:20.0.0'
+    implementation 'com.github.rizmaulana:SheenValidator:0.2.3'
 }
