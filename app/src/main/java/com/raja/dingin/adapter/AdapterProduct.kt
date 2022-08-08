@@ -35,6 +35,11 @@ class AdapterProduct (
         return NegaraViewHolder(viewBinding!!)
     }
 
+    fun setContracts(resProduct: List<ResProduct>) {
+//        itemList.clear()
+//        itemList.addAll(contracts)
+//        notifyDataSetChanged()
+    }
 
     // untuk memasukkan atau set data ke dalam view
     override fun onBindViewHolder(holder: NegaraViewHolder, position: Int) {

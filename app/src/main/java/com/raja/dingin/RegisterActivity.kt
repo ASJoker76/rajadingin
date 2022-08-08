@@ -80,7 +80,7 @@ class RegisterActivity : AppCompatActivity(), LocationFormatter {
 
         sheenValidator = SheenValidator(this)
         sheenValidator.setOnValidatorListener {
-            if(!tvPasswordConfirm.equals(tvPassword)){
+            if(tvPasswordConfirm.text.toString().equals(tvPassword.text.toString())){
                 var register = ReqRegister(
                     tvAddress.text.toString(),
                     tvEmail.text.toString(),
@@ -117,6 +117,10 @@ class RegisterActivity : AppCompatActivity(), LocationFormatter {
                             onSuccess(t)
                         }
                     })
+            }
+            else{
+                tvPassword.error = "Password Not Macth"
+                tvPasswordConfirm.error = "Password Not Macth"
             }
         }
         sheenValidator.registerAsRequired(tvEmail)

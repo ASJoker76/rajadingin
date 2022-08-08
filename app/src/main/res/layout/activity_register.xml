@@ -132,7 +132,8 @@
                     android:id="@+id/tvAddress"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:inputType="textMultiLine" />
+                    android:inputType="text|textMultiLine"
+                    android:gravity="left|top"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

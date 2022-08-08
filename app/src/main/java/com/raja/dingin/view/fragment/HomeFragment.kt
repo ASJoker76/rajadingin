@@ -2,6 +2,7 @@ package com.raja.dingin.view.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.TextKeyListener.clear
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,13 @@ import com.raja.dingin.model.req.ReqProduct
 import com.raja.dingin.model.res.ResBanner
 import com.raja.dingin.model.res.ResCategori
 import com.raja.dingin.model.res.ResProduct
+import com.squareup.picasso.Picasso
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.Collections.addAll
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -68,8 +71,8 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
 
         val prefs = requireActivity().baseContext.getSharedPreferences("login", Context.MODE_PRIVATE)
         token = prefs.getString("token", "")
-        val imageList = ArrayList<SlideModel>()
 
+        val imageList = ArrayList<SlideModel>()
 
         API.buildService().listBanner(token.toString())
             .observeOn(AndroidSchedulers.mainThread())
@@ -116,7 +119,7 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
                 }
 
                 override fun onComplete() {
-                    loadproduct()
+                    loadproduct("")
                 }
 
                 override fun onNext(t: List<ResCategori?>) {
@@ -126,18 +129,18 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
             })
     }
 
-    private fun loadproduct() {
+    private fun loadproduct(param: String) {
         val reqProduct = ReqProduct(
             10,
             0,
-            ""
+            param
         )
         API.buildService().listProduct(token.toString(),reqProduct)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(object : Observer<List<ResProduct?>?> {
                 override fun onSubscribe(d: Disposable) {
-
+                    //listDataProduct.clear()
                 }
 
                 override fun onError(e: Throwable) {
@@ -180,7 +183,7 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
             this.layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
         }
 
-        //recyclerView.addItemDecoration(GridSpacingItemDecoration(2, 2, true, 2))
+        productAdapter.notifyDataSetChanged()
     }
 
     companion object {
@@ -195,7 +198,7 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
     }
 
     override fun onItemClicked(view: View, resCategori: ResCategori) {
-
+        loadproduct(resCategori.kategori_id.toString())
     }
 
     override fun onItemClicked(view: View, resProduct: ResProduct) {
@@ -207,5 +210,4 @@ class HomeFragment : Fragment(), RecyclerViewClickListener {
         fragementIntent.setArguments(bundle)
         frag.commit()
     }
-
 }
