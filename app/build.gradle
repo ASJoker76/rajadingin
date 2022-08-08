@@ -34,6 +34,10 @@ android {
     viewBinding {
         enabled = true
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -61,4 +65,5 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.github.travijuu:numberpicker:1.0.7'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 }
