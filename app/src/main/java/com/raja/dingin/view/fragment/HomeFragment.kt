@@ -17,6 +17,7 @@ import com.raja.dingin.adapter.AdapterCategori
 import com.raja.dingin.adapter.AdapterProduct
 import com.raja.dingin.adapter.RecyclerViewHomeClickListener
 import com.raja.dingin.connection.API
+import com.raja.dingin.connection.Host.NO_IMAGE
 import com.raja.dingin.databinding.FragmentHomeBinding
 import com.raja.dingin.model.req.ReqProduct
 import com.raja.dingin.model.res.ResBanner
@@ -78,7 +79,7 @@ class HomeFragment : Fragment(), RecyclerViewHomeClickListener {
         API.buildService().listBanner(token.toString())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(object : Observer<List<ResBanner?>?> {
+            .subscribeWith(object : Observer<Response<List<ResBanner>>> {
                 override fun onSubscribe(d: Disposable) {
 
                 }
@@ -93,11 +94,17 @@ class HomeFragment : Fragment(), RecyclerViewHomeClickListener {
                     loadcategori()
                 }
 
-                override fun onNext(t: List<ResBanner?>) {
-                    listData = t as List<ResBanner>
+                override fun onNext(t: Response<List<ResBanner>>) {
+                    val statusCode: Int = t.code()
+                    if (statusCode == 200) {
+                        listData = t.body() as List<ResBanner>
 
-                    for (i in 0 until listData.size) {
-                        imageList.add(SlideModel(listData.get(i).image,listData.get(i).name_banner))
+                        for (i in 0 until listData.size) {
+                            imageList.add(SlideModel(listData.get(i).image,listData.get(i).name_banner))
+                        }
+                    }
+                    else if(statusCode == 204){
+                        imageList.add(SlideModel(NO_IMAGE))
                     }
 
                 }

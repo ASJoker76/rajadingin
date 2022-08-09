@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/12205002/Downloads/library/rajadingin/app/src/main/res/layout/activity_login.xml" value="0.11548913043478261" />
         <entry key="..\:/Users/12205002/Downloads/library/rajadingin/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/Users/12205002/Downloads/library/rajadingin/app/src/main/res/layout/fragment_cart.xml" value="0.22" />
         <entry key="..\:/Users/12205002/Downloads/library/rajadingin/app/src/main/res/layout/fragment_home.xml" value="0.1641337386018237" />
-        <entry key="..\:/Users/12205002/Downloads/library/rajadingin/app/src/main/res/layout/image_cart.xml" value="0.18012422360248448" />
         <entry key="..\:/Users/aguss/.gradle/caches/transforms-3/564d6f89baee8f61aa28773b0adad29f/transformed/numberpicker-1.0.7/res/layout/number_picker_layout.xml" value="0.33" />
+        <entry key="..\:/Users/aguss/.gradle/caches/transforms-3/b40f8ac9dadcbda206cbd4b69e588058/transformed/jetified-numberpicker-1.0.7/res/layout/number_picker_layout.xml" value="0.1" />
         <entry key="..\:/Users/aguss/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/drawable/cart.xml" value="0.3335" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/activity_login.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/fragment_cart.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/fragment_detail_product.xml" value="0.25" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/image_cart.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/image_product.xml" value="0.3625" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/number_picker_layout.xml" value="0.3614583333333333" />
+        <entry key="..\:/Users/aguss/Desktop/Raja Dingin/rajadingin/app/src/main/res/layout/number_picker_sumtom_layout.xml" value="0.3625" />
         <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_login.xml" value="0.2798913043478261" />
         <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/aguss/Downloads/rajadingin/app/src/main/res/layout/activity_register.xml" value="0.3625" />

@@ -32,7 +32,7 @@ interface Service {
     fun registerCustomer(@Body requestBody: ReqRegister): Observable<ResUtama>
 
     @GET("Api/listBanner")
-    fun listBanner(@Header("Authorization") autorization : String): Observable<List<ResBanner>>
+    fun listBanner(@Header("Authorization") autorization : String): Observable<Response<List<ResBanner>>>
 
     @GET("Api/listKategori")
     fun listKategori(@Header("Authorization") autorization : String): Observable<List<ResCategori>>

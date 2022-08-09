@@ -37,6 +37,9 @@ import retrofit2.Response
  */
 class DetailProductFragment : Fragment() {
 
+    private var sisaStok: Int? = null
+    private var stokAwal: Int? = null
+    private var imageProduct: String? = null
     private var nameProduct: String? = null
     private var harga: Int? = null
     private var token: String? = null
@@ -113,9 +116,12 @@ class DetailProductFragment : Fragment() {
 
             val resCart = ReqCart(
                 harga!!,
+                imageProduct.toString(),
                 inv_id!!.toInt(),
                 nameProduct.toString(),
                 number_picker.value,
+                sisaStok!!.toInt(),
+                stokAwal!!.toInt(),
                 total,
             )
 
@@ -162,6 +168,10 @@ class DetailProductFragment : Fragment() {
         for (i in 0 until t.detailImage.size) {
             imageList.add(SlideModel(t.detailImage.get(i).image))
         }
+
+        imageProduct = t.detailImage.get(0).image
+        sisaStok = t.sisa_stok
+        stokAwal = t.stok_awal
 
         tvNameProduct.text = t.name_product
         nameProduct = t.name_product
