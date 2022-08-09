@@ -507,4 +507,8 @@ class RegisterActivity : AppCompatActivity(), LocationFormatter {
         private val TAG = "LocationProvider"
         private val REQUEST_PERMISSIONS_REQUEST_CODE = 34
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
 }

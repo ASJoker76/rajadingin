@@ -1,14 +1,15 @@
 package com.raja.dingin.view.fragment
 
+//import com.raja.dingin.adapter.AdapterCart
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-//import com.raja.dingin.adapter.AdapterCart
 import com.raja.dingin.adapter.AdapterCart
 import com.raja.dingin.adapter.RecyclerViewCartClickListener
 import com.raja.dingin.connection.API
@@ -64,7 +65,7 @@ class CartFragment : Fragment(), RecyclerViewCartClickListener {
                     if (statusCode == 200) {
                         listDataCart = responseData.body() as MutableList<ResCart>
                         loadrecylerviewProduct(listDataCart)
-                        cekkondisi()
+                        cekkondisi(0L)
                     } else if (statusCode == 204) {
                         //cartAdapter.setView(listDataCart)
                     }
@@ -82,6 +83,20 @@ class CartFragment : Fragment(), RecyclerViewCartClickListener {
 
                 }
             })
+
+
+        // matiin onbackpress
+        root.setFocusableInTouchMode(true)
+        root.requestFocus()
+        root.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (event.action === KeyEvent.ACTION_DOWN) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    return@OnKeyListener true
+                }
+            }
+            false
+        })
+
 
         return root
     }
@@ -103,11 +118,11 @@ class CartFragment : Fragment(), RecyclerViewCartClickListener {
 
     override fun onItemClicked(total: Long) {
         binding.tvTotal.setText(ToRupiah().setConvertRp(total.toInt()))
-        cekkondisi()
+        cekkondisi(total)
     }
 
-    private fun cekkondisi() {
-        if(binding.tvTotal.text!!.isEmpty()){
+    private fun cekkondisi(total: Long) {
+        if(binding.tvTotal.text!!.isEmpty()||total == 0L){
             binding.btnPay.isEnabled = false
         }
         else{

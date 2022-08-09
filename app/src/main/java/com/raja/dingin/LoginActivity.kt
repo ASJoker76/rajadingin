@@ -75,4 +75,8 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+    }
 }
