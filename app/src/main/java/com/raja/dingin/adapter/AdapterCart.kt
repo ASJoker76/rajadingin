@@ -41,15 +41,6 @@ class AdapterCart(var list: ArrayList<ResCart>) :
         var qty = 0
         holder.checkbox.isChecked = checkBoxStateArray.get(position, false)
 
-//        if (holder.checkbox.isChecked == true){
-//            holder.itemView.btnIncrement.isEnabled = true
-//            holder.itemView.btnDecrement.isEnabled = true
-//        }
-//        else if (holder.checkbox.isChecked == false){
-//            holder.itemView.btnIncrement.isEnabled = false
-//            holder.itemView.btnDecrement.isEnabled = false
-//        }
-
         Glide.with(context!!.applicationContext)
             .load(list[position].image)
             .placeholder(R.drawable.logo)
@@ -104,10 +95,16 @@ class AdapterCart(var list: ArrayList<ResCart>) :
                     checkbox.isChecked = true
                     checkBoxStateArray.put(adapterPosition, true)
                     totalnominal += itemView.tvTotalPrice.text.toString().toInt()
+
+                    itemView.btnIncrement.isEnabled = false
+                    itemView.btnDecrement.isEnabled = false
                 } else {
                     checkbox.isChecked = false
                     checkBoxStateArray.put(adapterPosition, false)
                     totalnominal -= itemView.tvTotalPrice.text.toString().toInt()
+
+                    itemView.btnIncrement.isEnabled = true
+                    itemView.btnDecrement.isEnabled = true
                 }
                 showTotal(totalnominal)
             }
